@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Available Rooms</h3>
+    <table class="table">
+        {% for room in rooms %}
+        <tr>
+            <td>{{room.name}}</td>
+            <td><a href="{% url 'room' room.name %}">Join Room</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <hr>
+    <h3>Create New Room</h3>
+    <form action="/new_room" method="POST">
+        {% csrf_token%}
+        {{form.as_p}}
+        <button class="btn btn-success w-50">Create</button>
+    </form>
+
+{% endblock %}
